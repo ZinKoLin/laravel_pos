@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Home\HomeSliderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 
 Route::get('/dashboard', function () {
@@ -38,5 +39,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/update/password', [AdminController::class, 'updatePassword'])->name('update.password');
 
 });
+
+//home slide rout
+Route::middleware('auth')->group(function () {
+    Route::get('/home/slide', [HomeSliderController::class, 'homeSlider'])->name('home.slide');
+    Route::post('/update/slide',[HomeSliderController::class,'updateSlide'])->name('update.slider');
+
+
+});
+
 
 require __DIR__.'/auth.php';
