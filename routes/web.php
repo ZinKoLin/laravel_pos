@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\HomeSliderController;
+use App\Http\Controllers\Home\AboutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +45,23 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/home/slide', [HomeSliderController::class, 'homeSlider'])->name('home.slide');
     Route::post('/update/slide',[HomeSliderController::class,'updateSlide'])->name('update.slider');
+
+
+});
+
+//about Page all route
+Route::middleware('auth')->group(function () {
+    Route::get('/about/page', [AboutController::class, 'aboutPage'])->name('about.page');
+    Route::post('/about/update', [AboutController::class, 'aboutUpdate'])->name('update.about');
+    Route::get('/about', [AboutController::class, 'homeAbout'])->name('home.about');
+    Route::get('/about/multi/image', [AboutController::class, 'aboutMultiImage'])->name('about.multi.image');
+    Route::post('/store/multi', [AboutController::class, 'storeMultiImage'])->name('store.multi.image');
+    Route::get('/all/multi/image', [AboutController::class, 'allMultiImage'])->name('all.multi.image');
+    Route::get('/edit/multi/image/{id}', [AboutController::class, 'editMultiImage'])->name('edit.multi.image');
+    Route::post('/update/multi/image', [AboutController::class, 'updateMultiImage'])->name('update.multi.image');
+    Route::get('/delete/multi/image/{id}', [AboutController::class, 'deleteMultiImage'])->name('delete.multi.image');
+
+
 
 
 });
